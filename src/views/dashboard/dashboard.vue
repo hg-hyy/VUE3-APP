@@ -5,7 +5,12 @@
     <div class="col-9">
       <div class="card">
         <div class="card-header">
-          <span> 硬件监视</span>
+          <span>
+            <svg class="bi me-2" width="24" height="24">
+              <use xlink:href="#cpu" />
+            </svg>
+            硬件监视</span
+          >
         </div>
         <div class="card-body p-4" style="height: 320px">
           <div class="row">
@@ -67,7 +72,11 @@
     <div class="col-3">
       <div class="card">
         <div class="card-header">
-          <span> 报警事件（Top5）</span>
+          <span>
+            <svg class="bi me-2" width="24" height="24">
+              <use xlink:href="#alarm" /></svg
+            >报警事件（Top5）</span
+          >
         </div>
         <div class="card-body" style="height: 320px">
           <div class="row">

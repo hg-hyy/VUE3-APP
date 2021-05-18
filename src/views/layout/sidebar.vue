@@ -5,17 +5,27 @@
   >
     <a
       href="#"
-      class="d-flex align-items-center pb-3 m-3 link-dark text-decoration-none border-bottom"
+      class="d-flex pb-3 m-3 link-dark text-decoration-none border-bottom"
     >
-      <svg class="bi me-2" width="30" height="24">
-        <use xlink:href="#bootstrap" />
+      <svg class="bi me-2" width="24" height="24">
+        <use xlink:href="#tools" />
       </svg>
       <span class="fs-5 fw-semibold">{{ head }}</span>
     </a>
     <ul class="list-unstyled ps-0 mx-5">
-      <slink id="network" title="网络配置" :linkname="netlist"></slink>
+      <slink
+        id="network"
+        icon="netconf"
+        title="网络配置"
+        :linkname="netlist"
+      ></slink>
       <!-- <slink id="server" title="服务管理" :linkname="serverlist"></slink> -->
-      <slink id="status" title="状态监视" :linkname="statuslist"></slink>
+      <slink
+        id="status"
+        icon="speedometer2"
+        title="状态监视"
+        :linkname="statuslist"
+      ></slink>
     </ul>
   </div>
 </template>

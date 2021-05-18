@@ -4,19 +4,17 @@
       <div
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
       >
-        <a
-          href="/"
-          class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-        >
-          <svg class="bi me-2" width="40" height="32">
-            <use xlink:href="#bootstrap" />
-          </svg>
-        </a>
-
         <ul
           class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
         >
-          <li><a href="/v1/home" class="nav-link px-2 text-white">主页</a></li>
+          <a
+            href="/"
+            class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+          >
+            <svg class="bi me-2" width="32" height="32">
+              <use xlink:href="#home" /></svg
+            >主页
+          </a>
         </ul>
 
         <span class="navbar-text"> </span>
@@ -35,9 +33,15 @@
               style="height: 24px; width: 24px"
             />{{ authdata.username ? authdata.username : user }}
           </button>
-          <ul class="dropdown-menu" aria-labelledby="auth">
+          <ul
+            class="dropdown-menu dropdown-menu-end p-1 mt-2"
+            aria-labelledby="auth"
+            style="min-width: 100px"
+          >
             <li>
               <a class="dropdown-item" href="javascript:" @click="signout"
+                ><svg class="bi me-2" width="20" height="20">
+                  <use xlink:href="#exit" /></svg
                 >退出</a
               >
             </li>
@@ -79,6 +83,9 @@ function signout() {
 }
 </script>
   
-  <style>
+<style scoped>
+li > a:hover {
+  background-color: blueviolet;
+}
 </style>
   

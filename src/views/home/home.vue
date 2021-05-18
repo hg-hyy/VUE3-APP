@@ -39,7 +39,6 @@
 </template>
   <script setup>
 import { reactive } from "vue";
-
 const user = reactive({ username: "" });
 user.username = localStorage.getItem("username");
 </script>
