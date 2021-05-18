@@ -74,7 +74,7 @@
         <div class="card-header">
           <span>
             <svg class="bi me-2" width="24" height="24">
-              <use xlink:href="#alarm" /></svg
+              <use xlink:href="#bell" /></svg
             >报警事件（Top5）</span
           >
         </div>
@@ -98,21 +98,26 @@
               </div>
 
               <div class="input-group mb-3">
+                <label for="wssend"></label>
                 <input
+                  id="wssend"
                   type="text"
                   class="form-control"
                   aria-describedby="button-addon2"
                   v-model="input"
                 />
                 <button
-                  class="btn btn-outline-secondary"
+                  class="btn btn-outline-info"
                   type="button"
                   id="button-addon2"
                   @click="send"
                 >
-                  send
+                  <svg class="bi" width="1em" height="1em">
+                    <use xlink:href="#send" /></svg
+                  >send
                 </button>
               </div>
+              <label for="message"></label>
               <textarea
                 class="form-control"
                 id="message"
@@ -215,16 +220,6 @@ function initWebSocket() {
   ws.onerror = (evt) => {
     msg.value = "ERROR: " + evt.data;
   };
-}
-function websocketonmessage(e) {
-  const dataJson = JSON.parse(e.data);
-  const dataArray = dataJson.map((item) => {
-    return {
-      content: item.content,
-      timestamp: parseTime(item.timestamp),
-    };
-  });
-  activities = dataArray.reverse().slice(0, 5);
 }
 
 function send() {

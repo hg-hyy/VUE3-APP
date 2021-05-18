@@ -1,6 +1,5 @@
 <template>
   <h1>主页</h1>
-
   <div class="b-example-divider"></div>
   <div
     class="container py-3 shadow-lg p-3 mb-5 bg-body rounded"

@@ -19,6 +19,20 @@
         />
       </svg>
     </symbol>
+    <symbol id="bell">
+      <svg fill="currentColor" class="bi bi-bell" viewBox="0 0 16 16">
+        <path
+          d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"
+        />
+      </svg>
+    </symbol>
+    <symbol id="send">
+      <svg fill="currentColor" class="bi bi-cursor" viewBox="0 0 16 16">
+        <path
+          d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103zM2.25 8.184l3.897 1.67a.5.5 0 0 1 .262.263l1.67 3.897L12.743 3.52 2.25 8.184z"
+        />
+      </svg>
+    </symbol>
 
     <symbol id="cpu" viewBox="0 0 16 16">
       <svg fill="currentColor" class="bi bi-cpu" viewBox="0 0 16 16">
@@ -155,17 +169,5 @@
   </svg>
 </template>
 <script setup>
-import { defineProps, reactive, computed, watch, onMounted } from "vue";
-import { useStore } from "vuex";
-defineProps({
-  toast: {
-    active: Boolean,
-    title: String,
-    time: Date,
-    msg: String,
-  },
-});
-const store = useStore();
-const t = computed(() => store.state.toast);
 </script>
 <style></style>;

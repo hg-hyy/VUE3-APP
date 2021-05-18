@@ -6,16 +6,12 @@ const {
   resolve
 } = require('path')
 export default defineConfig({
-  // root: process.cwd(),
-  // base: '/v1',
-  // publicDir: 'public',
   plugins: [vue()],
   resolve: {
     alias: {
       '/@/': resolve(__dirname, 'src')
     }
   },
-  // mode: "production",
   server: {
     // host: "127.0.0.1",
     // port: "3000",

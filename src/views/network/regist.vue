@@ -96,13 +96,6 @@ function getsn() {
 function regist() {
   const netdata2 = usePostRef({}, NETURL, registdata);
 }
-
-// onMounted(() => {
-//   var toastElList = [].slice.call(document.querySelectorAll(".toast"));
-//   var toastList = toastElList.map(function (toastEl) {
-//     return new bootstrap.Toast(toastEl, option);
-//   });
-// });
 </script>
 <style scoped>
 .b-example-divider {

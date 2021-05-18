@@ -7,14 +7,16 @@
         <ul
           class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
         >
-          <a
-            href="/"
-            class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
-          >
-            <svg class="bi me-2" width="32" height="32">
-              <use xlink:href="#home" /></svg
-            >主页
-          </a>
+          <li>
+            <a
+              href="/"
+              class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+            >
+              <svg class="bi me-2" width="32" height="32">
+                <use xlink:href="#home" /></svg
+              >主页
+            </a>
+          </li>
         </ul>
 
         <span class="navbar-text"> </span>
@@ -51,24 +53,14 @@
     </div>
   </div>
 </template>
-  
 <script setup>
-import {
-  defineProps,
-  reactive,
-  computed,
-  watch,
-  onMounted,
-  toRefs,
-  ref,
-} from "vue";
+import { computed } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 
 const router = useRouter();
 const store = useStore();
 const authdata = computed(() => store.state.authdata);
-
 const user = localStorage.getItem("username");
 function signout() {
   store.dispatch("signout", { username: "", isAuthenticated: 0 });

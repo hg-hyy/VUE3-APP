@@ -29,11 +29,9 @@
     </ul>
   </div>
 </template>
-  
 <script setup>
 import { defineProps } from "vue";
 import slink from "../../components/slink.vue";
-
 defineProps({
   head: String,
 });
