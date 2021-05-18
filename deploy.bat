@@ -1,0 +1,1 @@
+scp -r dist root@192.168.20.130:/usr/local/nginx/html
