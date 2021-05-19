@@ -1,7 +1,7 @@
 <template>
   <div
+    id="sidebar"
     class="col col-md-2 bg-light border-end border-info p-0 bg-light"
-    style="height: 912px"
   >
     <a
       href="#"
@@ -26,6 +26,12 @@
         title="状态监视"
         :linkname="statuslist"
       ></slink>
+      <slink
+        id="showdata"
+        icon="speedometer2"
+        title="数据展示"
+        :linkname="showdatalist"
+      ></slink>
     </ul>
   </div>
 </template>
@@ -38,5 +44,15 @@ defineProps({
 // const serverlist = { regist: "regist" };
 const netlist = { network: "网卡配置" };
 const statuslist = { dashboard: "主机监控" };
+const showdatalist = { show: "数据展示" };
 </script>
-<style></style>;
+<style scoped>
+#sidebar {
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.1);
+  border: solid rgba(0, 0, 0, 0.15);
+  border-width: 1px 0;
+  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
+    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+}
+</style>;

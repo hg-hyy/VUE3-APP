@@ -40,7 +40,7 @@
             aria-labelledby="auth"
             style="min-width: 100px"
           >
-            <li>
+            <li id="logout">
               <a class="dropdown-item" href="javascript:" @click="signout"
                 ><svg class="bi me-2" width="20" height="20">
                   <use xlink:href="#exit" /></svg
@@ -76,7 +76,7 @@ function signout() {
 </script>
   
 <style scoped>
-li > a:hover {
+#logout > a:hover {
   background-color: blueviolet;
 }
 </style>

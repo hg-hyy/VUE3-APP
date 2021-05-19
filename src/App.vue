@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid p-0 m-0">
+  <div class="container-fluid p-0 m-0" id="main">
     <router-view name="signin" />
     <router-view name="dashboard" />
     <router-view name="navbar" />
@@ -15,4 +15,13 @@
 <script setup>
 import toast from "./components/toast.vue";
 </script>
+<style>
+#main {
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+</style>
 

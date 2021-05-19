@@ -36,12 +36,23 @@
         </tr>
       </tbody>
     </table>
+    <div class="input-group" style="width: 300px">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="ip address"
+        v-model="ptip.plat_ip"
+      />
+      <button class="btn btn-outline-info" type="button" @click="setptip">
+        设置平台地址
+      </button>
+    </div>
   </div>
 </template>
 <script setup>
-import { defineProps, toRefs, defineEmit } from "vue";
+import { defineProps, toRefs, reactive } from "vue";
 import { useStore } from "vuex";
-import { usePostRef } from "../utils/index";
+import { useGetRef, usePostRef } from "../utils/index";
 import modalbtn from "./modalbtn.vue";
 const props = defineProps({
   data: Array,
@@ -70,6 +81,24 @@ function serviceNet(id) {
       msg: "ip 地址不能为空！",
     });
   }
+}
+
+const GETPTURL = "/d_sysop/v1.0/plat_host";
+const SETPTURL = "/d_sysop/v1.0/plat_host";
+
+const setptdata = reactive({
+  data: {
+    plat_ip: "",
+  },
+});
+
+const ptip = useGetRef({ plat_ip: "" }, GETPTURL);
+console.log(ptip);
+
+function setptip() {
+  setptdata.data.plat_ip = ptip.value.plat_ip;
+  console.log(setptdata);
+  const netdata2 = usePostRef({}, SETPTURL, setptdata);
 }
 </script>
 <style scoped>

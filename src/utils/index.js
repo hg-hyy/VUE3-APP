@@ -1,18 +1,12 @@
 import {
-  customRef
-} from "vue";
-import axios from 'axios'
-
-import {
+  customRef,
   reactive
 } from "vue";
-
-
+import axios from 'axios'
 var ins = axios.create({
-  // baseURL: 'http://127.0.0.1:8002', //hyy
-  // baseURL: 'http://192.168.20.130:41111', //pdv
-  // baseURL: 'http://192.168.20.130:8910', //jry
-  timeout: 1000,
+  // baseURL: 'http://127.0.0.1:8002',
+  // baseURL: 'http://192.168.20.130:8910',
+  timeout: 2000,
 });
 
 // 添加请求拦截器

@@ -81,7 +81,7 @@
         <div class="card-body" style="height: 320px">
           <div class="row">
             <div class="col-12">
-              <div class="btn-group mb-3" role="group">
+              <!-- <div class="btn-group mb-3" role="group">
                 <button
                   type="button"
                   class="btn btn-info"
@@ -95,12 +95,12 @@
                 <button type="button" class="btn btn-warning" @click="clear">
                   清空
                 </button>
-              </div>
-
+              </div> -->
+              <!-- 
               <div class="input-group mb-3">
-                <label for="wssend"></label>
                 <input
                   id="wssend"
+                  title="wssend"
                   type="text"
                   class="form-control"
                   aria-describedby="button-addon2"
@@ -116,12 +116,12 @@
                     <use xlink:href="#send" /></svg
                   >send
                 </button>
-              </div>
-              <label for="message"></label>
+              </div> -->
+
               <textarea
+                title="wsmsg"
                 class="form-control"
-                id="message"
-                rows="7"
+                rows="11"
                 v-model="msg"
               >
               </textarea>
@@ -146,6 +146,9 @@ const hardware = reactive({
   system: "",
   setuptime: "",
 });
+const timer = ref();
+const msg = ref("");
+const input = ref("");
 const cpuTemp = ref(null);
 const cpuUsage = ref(null);
 const memUsage = ref(null);
@@ -155,19 +158,12 @@ let CpuChart = reactive({});
 let MemChart = reactive({});
 let DiskChart = reactive({});
 let activities = reactive({});
-let timer = ref();
 const stat = reactive([]);
 let ws = {};
-const msg = ref("");
-const message = ref("");
-const input = ref("");
 onMounted(() => {
   initCharts();
   loadData();
   // loadMoniP();
-  // if (ws) {
-  //   close(); // 关闭websocket连接
-  // }
   initWebSocket(); // 初始化weosocket，发起连接
   // 这里使用定时器是为了等待连接后才发送数据，避免错误
   setTimeout(() => {
@@ -179,7 +175,7 @@ onMounted(() => {
         cycle: 5,
       };
       // 发给后端的数据需要字符串化
-      websocketsend(obj);
+      wssend(obj);
     }
   }, 500);
   timer.value = setInterval(() => {
@@ -197,7 +193,6 @@ function initWebSocket() {
   ws = new WebSocket(path);
   ws.onopen = () => {
     console.log("ws连接状态：" + ws.readyState);
-    ws.send("连接成功");
   };
   ws.onclose = () => {
     ws = null;
@@ -239,7 +234,7 @@ function clear() {
   msg.value = "";
 }
 
-function websocketsend(data) {
+function wssend(data) {
   // 数据发送
   ws.send(JSON.stringify(data));
 }

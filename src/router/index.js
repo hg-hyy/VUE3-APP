@@ -7,6 +7,7 @@ import network from '../views/network/network.vue'
 import regist from '../views/network/regist.vue'
 import home from '../views/home/home.vue'
 import dashboard from '../views/dashboard/dashboard.vue'
+import show from '../views/show/show.vue'
 
 import {
     createRouter,
@@ -56,6 +57,11 @@ const routes = [{
                 name: 'dashboard',
                 component: dashboard
             },
+            {
+                path: 'show',
+                name: 'show',
+                component: show
+            },
 
             {
                 path: ':pathMatch(.*)*',
@@ -69,12 +75,6 @@ const routes = [{
         components: {
             signin
         },
-    },
-    {
-        path: '/network',
-        components: {
-            network
-        }
     },
     {
         path: '/dashboard',
