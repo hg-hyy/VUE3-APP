@@ -44,7 +44,7 @@ defineProps({
 // const serverlist = { regist: "regist" };
 const netlist = { network: "网卡配置" };
 const statuslist = { dashboard: "主机监控" };
-const showdatalist = { show: "数据展示" };
+const showdatalist = { show: "数据展示", excel: "excel", upload: "上传" };
 </script>
 <style scoped>
 #sidebar {

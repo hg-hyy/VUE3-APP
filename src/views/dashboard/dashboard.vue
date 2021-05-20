@@ -134,14 +134,14 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, watch } from "vue";
+import { ref, reactive, onMounted, watch, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 import * as echarts from "echarts";
 
 const store = useStore();
 const th = ["ID", "名称", "PID", "CPU(%)", "内存(%)", "启动时间", "操作"];
-const path = "ws://192.168.20.130:49101";
+const path = "ws://127.0.0.1:8002/echo";
 const hardware = reactive({
   system: "",
   setuptime: "",
@@ -183,12 +183,6 @@ onMounted(() => {
     // loadMoniP();
   }, 5000);
 });
-watch(
-  () => msg.length,
-  (n) => {
-    console.log(n);
-  }
-);
 function initWebSocket() {
   ws = new WebSocket(path);
   ws.onopen = () => {
@@ -198,19 +192,19 @@ function initWebSocket() {
     ws = null;
   };
   ws.onmessage = (evt) => {
-    const dd = eval("(" + evt.data + ")");
-    // const dataJson = JSON.parse(evt.data);
-    if (dd.length > 0) {
-      const dataArray = dataJson.map((item) => {
-        return {
-          content: item.content,
-          timestamp: parseTime(item.timestamp),
-        };
-      });
-      activities = dataArray.reverse().slice(0, 5);
-    } else {
-      msg.value = "无" + "\r\n";
-    }
+    // const dd = eval("(" + evt.data + ")");
+    // // const dataJson = JSON.parse(evt.data);
+    // if (dd.length > 0) {
+    //   const dataArray = dataJson.map((item) => {
+    //     return {
+    //       content: item.content,
+    //       timestamp: parseTime(item.timestamp),
+    //     };
+    //   });
+    //   activities = dataArray.reverse().slice(0, 5);
+    // } else {
+    msg.value = evt.data + "\r\n";
+    // }
   };
   ws.onerror = (evt) => {
     msg.value = "ERROR: " + evt.data;
@@ -582,6 +576,11 @@ function initCharts() {
   MemChart = echarts.init(memUsage.value);
   DiskChart = echarts.init(diskUsage.value);
 }
+
+onUnmounted(() => {
+  clearInterval(timer.value);
+  ws.close();
+});
 </script>
 <style scoped>
 .b-example-divider {

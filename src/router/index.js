@@ -8,6 +8,8 @@ import regist from '../views/network/regist.vue'
 import home from '../views/home/home.vue'
 import dashboard from '../views/dashboard/dashboard.vue'
 import show from '../views/show/show.vue'
+import excel from '../views/excel/excel.vue'
+import upload from '../views/excel/upload.vue'
 
 import {
     createRouter,
@@ -61,6 +63,16 @@ const routes = [{
                 path: 'show',
                 name: 'show',
                 component: show
+            },
+            {
+                path: 'excel',
+                name: 'excel',
+                component: excel
+            },
+            {
+                path: 'upload',
+                name: 'upload',
+                component: upload
             },
 
             {

@@ -5,7 +5,11 @@ import {
 } from '../utils/tools'
 
 const STATUSURL = '/n_node/v1.0/sensor/seq'
-
+var ins = axios.create({
+    baseURL: 'http://127.0.0.1:8002',
+    // baseURL: 'http://192.168.20.130:8910',
+    timeout: 2000,
+});
 const actions = {
     set_accountid({
         commit
@@ -41,7 +45,7 @@ const actions = {
     getDashboards({
         commit
     }) {
-        axios({
+        ins({
                 url: STATUSURL,
                 method: 'get',
                 params: {
@@ -105,7 +109,7 @@ const actions = {
     getState({
         commit
     }) {
-        axios({
+        ins({
                 url: STATUSURL,
                 method: 'get',
                 params: {

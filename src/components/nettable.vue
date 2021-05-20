@@ -50,9 +50,9 @@
   </div>
 </template>
 <script setup>
-import { defineProps, toRefs, reactive } from "vue";
+import { defineProps, toRefs, reactive, ref } from "vue";
 import { useStore } from "vuex";
-import { useGetRef, usePostRef } from "../utils/index";
+import { useGetRefST, usePostRef, usePostRefST } from "../utils/index";
 import modalbtn from "./modalbtn.vue";
 const props = defineProps({
   data: Array,
@@ -63,28 +63,27 @@ const serviceNetURL = "/d_sysop/v1.0/serviceNet ";
 
 const th = ["序号", "网卡名称", "IP地址", "网关", "子网掩码", "DNS", "操作"];
 const { data } = { ...toRefs(props) };
-function serviceNet(id) {
-  const serviceNetdata = {
-    data: {
-      device: data.value[id].device,
-      ip: data.value[id].ip,
-    },
-  };
-  if (data.value[id].ip) {
-    usePostRef({}, serviceNetURL, serviceNetdata);
-  } else {
-    store.dispatch("toast", {
-      active: true,
-      color: "danger",
-      title: "登录：",
-      time: new Date().toLocaleString(),
-      msg: "ip 地址不能为空！",
-    });
-  }
-}
+// function serviceNet(id) {
+//   const serviceNetdata = {
+//     data: {
+//       device: data.value[id].device,
+//       ip: data.value[id].ip,
+//     },
+//   };
+//   if (data.value[id].ip) {
+//     usePostRef({}, serviceNetURL, serviceNetdata);
+//   } else {
+//     store.dispatch("toast", {
+//       active: true,
+//       color: "danger",
+//       title: "登录：",
+//       time: new Date().toLocaleString(),
+//       msg: "ip 地址不能为空！",
+//     });
+//   }
+// }
 
-const GETPTURL = "/d_sysop/v1.0/plat_host";
-const SETPTURL = "/d_sysop/v1.0/plat_host";
+const PTURL = "/d_sysop/v1.0/plat_host";
 
 const setptdata = reactive({
   data: {
@@ -92,13 +91,36 @@ const setptdata = reactive({
   },
 });
 
-const ptip = useGetRef({ plat_ip: "" }, GETPTURL);
-console.log(ptip);
+const ptip = ref({
+  plat_ip: "",
+});
+useGetRefST({}, PTURL).then((res) => {
+  if (res.value.code === 1000) {
+    store.dispatch("toast", {
+      active: true,
+      color: "info",
+      title: "获取平台地址：",
+      time: new Date().toLocaleString(),
+      msg: `获取成功`,
+    });
+  }
+  ptip.value = res.value.data;
+});
 
 function setptip() {
   setptdata.data.plat_ip = ptip.value.plat_ip;
-  console.log(setptdata);
-  const netdata2 = usePostRef({}, SETPTURL, setptdata);
+  usePostRefST({}, PTURL, setptdata).then((res) => {
+    console.log(res);
+    if (res.value.code === 1000) {
+      store.dispatch("toast", {
+        active: true,
+        color: "success",
+        title: "平台地址配置：",
+        time: new Date().toLocaleString(),
+        msg: `配置成功`,
+      });
+    }
+  });
 }
 </script>
 <style scoped>

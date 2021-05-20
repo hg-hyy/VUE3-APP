@@ -1,13 +1,13 @@
 <template>
   <div class="form-signin">
     <form>
-      <!-- <img
+      <img
         class="mb-4"
         src="../../static/pic/bootstrap-logo.svg"
         alt=""
         width="72"
         height="57"
-      />-->
+      />
       <h1 class="h3 mb-3 fw-normal">系统运维工具</h1>
 
       <div class="form-floating mt-2">
@@ -46,18 +46,11 @@
   </div>
 </template>
 <script setup>
-import {
-  defineProps,
-  reactive,
-  computed,
-  watch,
-  onMounted,
-  ref,
-  customRef,
-} from "vue";
+import { defineProps, reactive, computed, watch, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import { usePostRef } from "../../utils/index";
+import { login } from "../../api/api";
 defineProps({
   data: {
     username: String,
@@ -95,9 +88,8 @@ function signin() {
     return false;
   }
 
-  const payload = usePostRef({}, AUTHURL, formdata);
-  setTimeout(() => {
-    if (!payload.value.isAuthenticated) {
+  usePostRef({}, AUTHURL, formdata).then((res) => {
+    if (!res.value.isAuthenticated) {
       store.dispatch("toast", {
         active: true,
         color: "success",
@@ -106,16 +98,16 @@ function signin() {
         msg: `登陆失败！`,
       });
     } else {
-      store.dispatch("signin", payload);
+      store.dispatch("signin", res);
       store.dispatch("toast", {
         active: true,
         color: "success",
         title: "登录：",
         time: new Date().toLocaleString(),
-        msg: `welcome ${payload.value.username}`,
+        msg: `welcome ${res.value.username}`,
       });
     }
-  }, 100);
+  });
 }
 
 watch(

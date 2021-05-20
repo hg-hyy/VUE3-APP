@@ -20,11 +20,12 @@
         </ul>
 
         <span class="navbar-text"> </span>
-        <div class="dropdown">
+        <div class="dropdown me-1">
           <button
             class="btn btn-outline-primary dropdown-toggle"
             type="button"
             id="auth"
+            data-bs-offset="0,10"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
@@ -36,8 +37,7 @@
             />{{ authdata.username ? authdata.username : user }}
           </button>
           <ul
-            class="dropdown-menu dropdown-menu-end p-1 mt-2"
-            aria-labelledby="auth"
+            class="dropdown-menu dropdown-menu-end p-1"
             style="min-width: 100px"
           >
             <li id="logout">
