@@ -1,31 +1,64 @@
 <template>
-  <div class="p-2 bg-dark text-white">
+  <nav class="navbar navbar-expand-lg bg-dark text-white" style="height: 60px">
     <div class="container-fluid">
-      <div
-        class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start"
+      <a class="navbar-brand text-white" href="/"
+        ><svg class="bi" width="24" height="24">
+          <use xlink:href="#home" /></svg
+        >Home</a
       >
-        <ul
-          class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0"
-        >
-          <li>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navlink"
+        aria-controls="navlink"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navlink">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Link</a>
+          </li>
+          <li class="nav-item dropdown">
             <a
-              href="/"
-              class="d-flex align-items-center mb-2 mb-lg-0 text-white text-decoration-none"
+              class="nav-link dropdown-toggle"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
             >
-              <svg class="bi me-2" width="32" height="32">
-                <use xlink:href="#home" /></svg
-              >主页
+              Dropdown
             </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Action</a></li>
+              <li><a class="dropdown-item" href="#">Another action</a></li>
+              <li><hr class="dropdown-divider" /></li>
+              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            </ul>
           </li>
         </ul>
-
-        <span class="navbar-text"> </span>
+        <form class="d-flex mx-1">
+          <input
+            class="form-control me-2"
+            type="search"
+            placeholder="Search"
+            aria-label="Search"
+          />
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
         <div class="dropdown me-1">
           <button
             class="btn btn-outline-primary dropdown-toggle"
             type="button"
             id="auth"
-            data-bs-offset="0,10"
+            data-bs-offset="0,20"
             data-bs-toggle="dropdown"
             aria-expanded="false"
           >
@@ -51,7 +84,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </nav>
 </template>
 <script setup>
 import { computed } from "vue";
@@ -76,8 +109,11 @@ function signout() {
 </script>
   
 <style scoped>
-#logout > a:hover {
+#logout a:hover {
   background-color: blueviolet;
+}
+a {
+  color: cadetblue;
 }
 </style>
   

@@ -116,7 +116,7 @@ watch(
     if (auth) {
       localStorage.setItem("username", authdata.value.username);
       localStorage.setItem("authtoken", authdata.value.authtoken);
-      router.push("/v1/dashboard");
+      router.push("/v1/home");
     }
   }
 );
@@ -130,7 +130,7 @@ onMounted(() => {
     localStorage.getItem("username") === "admin" ||
     authdata.value.isAuthenticated
   ) {
-    router.push("/v1/dashboard");
+    router.push("/v1/home");
   }
 });
 

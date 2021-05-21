@@ -87,7 +87,6 @@ const props = defineProps({
   layout: String, //布局
 });
 const { data, pagenum, layout } = { ...toRefs(props) };
-const layout_style = layout.value.split(",");
 const currentPage = ref(1);
 const pagesize = ref(3);
 pagesize.value = pagenum.value;

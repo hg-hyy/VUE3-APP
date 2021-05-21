@@ -80,7 +80,7 @@
 <script setup>
 import { reactive } from "vue";
 import { useGetRef, usePostRef } from "../../utils/index";
-import registtable from "../../components/registtable.vue";
+import registtable from "../../components/Vform.vue";
 
 const NETURL = "/d_sysop/v1.0/netConf";
 const FINGERURL = "/d_sysop/v1.0/finger";

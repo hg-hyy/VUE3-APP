@@ -1,10 +1,6 @@
 <template>
-  <h1>主页</h1>
-  <div class="b-example-divider"></div>
-  <div
-    class="container py-3 shadow-lg p-3 mb-5 bg-body rounded"
-    id="hanging-icons"
-  >
+  <vhead head="主页"></vhead>
+  <div class="mx-3 shadow-lg p-3 mb-5 bg-body rounded">
     <div class="shadow-lg p-3 mb-5 bg-body rounded">
       <h2 class="pb-2">欢迎 {{ user.username }} ！</h2>
     </div>
@@ -38,17 +34,10 @@
 </template>
   <script setup>
 import { reactive } from "vue";
+import vhead from "../../components/Vtitle.vue";
+
 const user = reactive({ username: "" });
 user.username = localStorage.getItem("username");
 </script>
 <style scoped>
-.b-example-divider {
-  height: 0.2rem;
-  width: 100%;
-  background-color: rgba(116, 30, 214, 0.432);
-  border: solid rgba(207, 14, 143, 0.15);
-  border-width: 1px 0;
-  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
-    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
-}
 </style>

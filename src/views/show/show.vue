@@ -1,16 +1,13 @@
 <template>
-  <h1>数据展示</h1>
-  <div class="b-example-divider mb-3"></div>
-  <pagenation
-    :data="data"
-    :pagesizes="pagesizes"
-    :pagenum="pagesize"
-    layout="sizes,jump"
-  />
+  <Vtitle head="数据展示"></Vtitle>
+  <div class="mx-3 shadow-lg p-3 mb-5 bg-body rounded">
+    <Vpagenation :data="data" :pagesizes="pagesizes" :pagenum="pagesize" />
+  </div>
 </template>
 <script setup>
-import { reactive, readonly, ref } from "vue";
-import pagenation from "../../components/pagenation.vue";
+import { ref } from "vue";
+import Vpagenation from "../../components/Vpagenation.vue";
+import Vtitle from "../../components/Vtitle.vue";
 const data = [];
 
 for (let i = 0; i < 100; i++) {

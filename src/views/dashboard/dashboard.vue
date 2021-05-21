@@ -1,87 +1,93 @@
 <template>
-  <h1>主机监控</h1>
-  <div class="b-example-divider"></div>
-  <div class="row mt-3">
-    <div class="col-9">
-      <div class="card">
-        <div class="card-header">
-          <span>
-            <svg class="bi me-2" width="24" height="24">
-              <use xlink:href="#cpu" />
-            </svg>
-            硬件监视</span
-          >
-        </div>
-        <div class="card-body p-4" style="height: 320px">
-          <div class="row">
-            <div class="col-6">
-              <div class="text-center">操作系统：{{ hardware.system }}</div>
-            </div>
-            <div class="col-6">
-              <div class="text-center">开机时间：{{ hardware.setuptime }}</div>
-            </div>
-
-            <div class="col-3">
-              <div
-                id="cpuTemp"
-                ref="cpuTemp"
-                style="width: 260px; height: 170px"
-              ></div>
-            </div>
-            <div class="col-3">
-              <div
-                id="cpuUsage"
-                ref="cpuUsage"
-                style="width: 260px; height: 170px"
-              ></div>
-            </div>
-            <div class="col-3">
-              <div
-                id="memUsage"
-                ref="memUsage"
-                style="width: 260px; height: 170px"
-              ></div>
-            </div>
-            <div class="col-3">
-              <div
-                id="diskUsage"
-                ref="diskUsage"
-                style="width: 260px; height: 170px"
-              ></div>
-            </div>
-
-            <div class="col-3 mt-3" v-for="(item, index) in stat" :key="index">
-              <div class="stat-info__item">
-                <div
-                  class="stat-info__icon"
-                  :style="{ 'background-color': item.bgColor }"
-                >
-                  <i :class="item.icon"></i>
+  <vhead head="主机监视"></vhead>
+  <div class="mx-3 shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="row mt-3">
+      <div class="col-9">
+        <div class="card">
+          <div class="card-header">
+            <span>
+              <svg class="bi me-2" width="24" height="24">
+                <use xlink:href="#cpu" />
+              </svg>
+              硬件监视</span
+            >
+          </div>
+          <div class="card-body p-4" style="height: 320px">
+            <div class="row">
+              <div class="col-6">
+                <div class="text-center">操作系统：{{ hardware.system }}</div>
+              </div>
+              <div class="col-6">
+                <div class="text-center">
+                  开机时间：{{ hardware.setuptime }}
                 </div>
-                <div class="stat-info__detail">
-                  <span class="stat-info__total">{{ item.total }}</span>
-                  <span class="stat-info__title">{{ item.title }}</span>
+              </div>
+
+              <div class="col-3">
+                <div
+                  id="cpuTemp"
+                  ref="cpuTemp"
+                  style="width: 260px; height: 170px"
+                ></div>
+              </div>
+              <div class="col-3">
+                <div
+                  id="cpuUsage"
+                  ref="cpuUsage"
+                  style="width: 260px; height: 170px"
+                ></div>
+              </div>
+              <div class="col-3">
+                <div
+                  id="memUsage"
+                  ref="memUsage"
+                  style="width: 260px; height: 170px"
+                ></div>
+              </div>
+              <div class="col-3">
+                <div
+                  id="diskUsage"
+                  ref="diskUsage"
+                  style="width: 260px; height: 170px"
+                ></div>
+              </div>
+
+              <div
+                class="col-3 mt-3"
+                v-for="(item, index) in stat"
+                :key="index"
+              >
+                <div class="stat-info__item">
+                  <div
+                    class="stat-info__icon"
+                    :style="{ 'background-color': item.bgColor }"
+                  >
+                    <i :class="item.icon"></i>
+                  </div>
+                  <div class="stat-info__detail">
+                    <span class="stat-info__total">{{ item.total }}</span>
+                    <span class="stat-info__title">{{ item.title }}</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
 
-    <div class="col-3">
-      <div class="card">
-        <div class="card-header">
-          <span>
-            <svg class="bi me-2" width="24" height="24">
-              <use xlink:href="#bell" /></svg
-            >报警事件（Top5）</span
-          >
-        </div>
-        <div class="card-body" style="height: 320px">
-          <div class="row">
-            <div class="col-12">
-              <!-- <div class="btn-group mb-3" role="group">
+      <div class="col-3">
+        <div class="card">
+          <div class="card-header">
+            <span>
+              <svg class="bi me-2" width="24" height="24">
+                <use xlink:href="#bell" /></svg
+              >报警事件（Top5）</span
+            >
+          </div>
+          <div class="card-body" style="height: 320px">
+            <div class="row">
+              <div class="col-12">
+                <!-- <div class="btn-group mb-3" role="group">
                 <button
                   type="button"
                   class="btn btn-info"
@@ -96,7 +102,7 @@
                   清空
                 </button>
               </div> -->
-              <!-- 
+                <!-- 
               <div class="input-group mb-3">
                 <input
                   id="wssend"
@@ -118,13 +124,14 @@
                 </button>
               </div> -->
 
-              <textarea
-                title="wsmsg"
-                class="form-control"
-                rows="11"
-                v-model="msg"
-              >
-              </textarea>
+                <textarea
+                  title="wsmsg"
+                  class="form-control"
+                  rows="11"
+                  v-model="msg"
+                >
+                </textarea>
+              </div>
             </div>
           </div>
         </div>
@@ -138,6 +145,7 @@ import { ref, reactive, onMounted, watch, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 import * as echarts from "echarts";
+import vhead from "../../components/Vtitle.vue";
 
 const store = useStore();
 const th = ["ID", "名称", "PID", "CPU(%)", "内存(%)", "启动时间", "操作"];

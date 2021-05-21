@@ -22,7 +22,7 @@
 </template>
 <script setup>
 import { defineProps, reactive, ref } from "vue";
-import modalbtn from "./modalbtn.vue";
+import Vbutton from "./Vbutton.vue";
 
 const props = defineProps({
   id: String,

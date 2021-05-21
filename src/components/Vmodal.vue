@@ -30,7 +30,7 @@
                   type="ip"
                   class="form-control"
                   id="device"
-                  v-model="formdata.device"
+                  v-model="data.device"
                   autocomplete="off"
                 />
               </div>
@@ -42,7 +42,7 @@
                   type="text"
                   class="form-control"
                   id="ip"
-                  v-model="formdata.ip"
+                  v-model="data.ip"
                   autocomplete="off"
                 />
               </div>
@@ -56,7 +56,7 @@
                   type="text"
                   class="form-control"
                   id="netmask"
-                  v-model="formdata.netmask"
+                  v-model="data.netmask"
                   autocomplete="off"
                 />
               </div>
@@ -68,7 +68,7 @@
                   type="text"
                   class="form-control"
                   id="gateway"
-                  v-model="formdata.gateway"
+                  v-model="data.gateway"
                   autocomplete="off"
                 />
               </div>
@@ -80,7 +80,7 @@
                   type="text"
                   class="form-control"
                   id="dns"
-                  v-model="formdata.dns1"
+                  v-model="data.dns1"
                   autocomplete="off"
                 />
               </div>
@@ -92,7 +92,7 @@
             type="button"
             class="btn btn-primary"
             data-bs-dismiss="modal"
-            @click="confirm()"
+            @click="emit('confirm', data)"
           >
             确定
           </button>
@@ -111,81 +111,15 @@
 </template>
 
 <script setup>
-import { reactive, defineProps, computed, watch } from "vue";
-import { useStore } from "vuex";
-import { usePostRef } from "../utils/index";
+import { defineProps, defineEmit } from "vue";
+
 const props = defineProps({
   net: String,
   head: String,
-  // data: Object,
+  data: Object,
 });
 
-const PostURL = "/d_sysop/v1.0/netConf";
-// let { data } = { ...toRefs(props) };
-const store = useStore();
-const ensid = computed(() => store.state.ensid);
-const nc = computed(() => store.state.netconf);
-const formdata = reactive({
-  device: "",
-  ip: "",
-  netmask: "",
-  gateway: "",
-  dns1: "",
+const emit = defineEmit({
+  confirm: Object,
 });
-
-function confirm() {
-  const res = usePostRef("ok", PostURL, { data: formdata });
-  setTimeout(() => {
-    if (res.value === "ok") {
-      store.dispatch("toast", {
-        active: true,
-        color: "success",
-        title: "网卡配置：",
-        time: new Date().toLocaleString(),
-        msg: `网卡配置失败`,
-      });
-    } else {
-      nc.value[ensid.value].device = formdata.device;
-      nc.value[ensid.value].ip = formdata.ip;
-      nc.value[ensid.value].netmask = formdata.netmask;
-      nc.value[ensid.value].gateway = formdata.gateway;
-      nc.value[ensid.value].dns1 = formdata.dns1;
-      store.dispatch("set_netconf", nc.value);
-      store.dispatch("toast", {
-        active: true,
-        color: "success",
-        title: "网卡配置：",
-        time: new Date().toLocaleString(),
-        msg: `网卡配置成功`,
-      });
-    }
-  }, 1500);
-}
-function cancle() {
-  formdata.device = nc.value[ensid.value].device;
-  formdata.ip = nc.value[ensid.value].ip;
-  formdata.netmask = nc.value[ensid.value].netmask;
-  formdata.gateway = nc.value[ensid.value].gateway;
-  formdata.dns1 = nc.value[ensid.value].dns1;
-}
-watch(
-  () => nc.value,
-  () => {
-    formdata.device = nc.value[ensid.value].device;
-    formdata.ip = nc.value[ensid.value].ip;
-    formdata.netmask = nc.value[ensid.value].netmask;
-    formdata.gateway = nc.value[ensid.value].gateway;
-    formdata.dns1 = nc.value[ensid.value].dns1;
-  }
-);
-watch(
-  () => ensid.value,
-  (n) => {
-    formdata.device = nc.value[n].device;
-    formdata.ip = nc.value[n].ip;
-    formdata.netmask = nc.value[n].netmask;
-    formdata.gateway = nc.value[n].gateway;
-    formdata.dns1 = nc.value[n].dns1;
-  }
-);
 </script>

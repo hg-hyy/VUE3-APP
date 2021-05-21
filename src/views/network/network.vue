@@ -1,13 +1,15 @@
 <template>
-  <nettable :data="nc" :netconfig="netconfig"></nettable>
-  <networkmodal id="net" head="网卡配置" :data="nc"></networkmodal>
+  <Vtitle head="网卡配置"></Vtitle>
+  <div class="mx-3 shadow-lg p-3 mb-5 bg-body rounded">
+    <Vtable :data="nc" :netconfig="netconfig"></Vtable>
+  </div>
 </template>
 <script setup>
 import { computed } from "vue";
 import { useStore } from "vuex";
 import { useGetRefST } from "../../utils/index";
-import networkmodal from "../../components/networkmodal.vue";
-import nettable from "../../components/nettable.vue";
+import Vtable from "../../components/Vtable.vue";
+import Vtitle from "../../components/Vtitle.vue";
 import { netconfig } from "../../../netalias.json";
 const store = useStore();
 const nc = computed(() => store.state.netconf);

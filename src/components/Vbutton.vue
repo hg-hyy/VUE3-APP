@@ -4,7 +4,7 @@
     class="btn btn-primary btn-sm"
     data-bs-toggle="modal"
     :data-bs-target="'#' + id"
-    @click="setid"
+    @click="emit('alter', netid)"
   >
     <svg class="bi me-2" width="16" height="16">
       <use xlink:href="#edit" />
@@ -13,16 +13,13 @@
   </button>
 </template>
 <script setup>
-import { defineProps } from "vue";
-import { useStore } from "vuex";
-const props = defineProps({
+import { defineProps, defineEmit } from "vue";
+defineProps({
   id: String,
-  accountid: String | Number,
+  netid: Number,
+  row: Object,
 });
-
-const store = useStore();
-const { accountid } = { ...props };
-function setid() {
-  store.dispatch("setensid", accountid);
-}
+const emit = defineEmit({
+  alter: Number,
+});
 </script>
