@@ -10,6 +10,8 @@ import dashboard from '../views/dashboard/dashboard.vue'
 import show from '../views/show/show.vue'
 import excel from '../views/excel/excel.vue'
 import upload from '../views/excel/upload.vue'
+import report from '../views/excel/report.vue'
+import dyn from '../views/dyn/dyn.vue'
 
 import {
     createRouter,
@@ -73,6 +75,16 @@ const routes = [{
                 path: 'upload',
                 name: 'upload',
                 component: upload
+            },
+            {
+                path: 'dyn',
+                name: 'dyn',
+                component: dyn
+            },
+            {
+                path: 'report',
+                name: 'report',
+                component: report
             },
 
             {

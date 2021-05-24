@@ -28,7 +28,8 @@ const state = () => {
             total_flow_out_s: 0,
             total_bytes_sent: 0,
             total_bytes_recv: 0
-        }
+        },
+        business_group_id: 1
     }
 }
 

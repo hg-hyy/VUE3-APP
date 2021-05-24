@@ -25,7 +25,13 @@ import slink from "../../components/Vlink.vue";
 const headname = ref("系统运维工具");
 const netlist = { network: "网卡配置" };
 const statuslist = { dashboard: "主机监控" };
-const showdatalist = { show: "数据展示", excel: "excel", upload: "上传" };
+const showdatalist = {
+  show: "数据",
+  excel: "导出",
+  upload: "导入导出",
+  report: "报表",
+  dyn: "动态组件",
+};
 const linkdata = [
   {
     id: "network",

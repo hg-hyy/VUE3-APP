@@ -16,26 +16,25 @@ export default defineConfig({
     // host: "127.0.0.1",
     // port: "3000",
     open: '/signin',
-    //   proxy: {
-    //     '/n_node': {
-    //       target: 'http://192.168.20.130:8910',
-    //       changeOrigin: true,
-    //       // rewrite: (path) => path.replace(/^\/api/, '')
-    //     },
-    //     '/d_sysop': {
-    //       target: 'http://192.168.20.130:41111',
-    //       changeOrigin: true,
-    //       // rewrite: (path) => path.replace(/^\/api/, '')
-    //     },
-    //     '/ws': {
-    //       target: 'http://192.168.20.130:49101',
-    //       changeOrigin: true,
-    //       // rewrite: (path) => path.replace(/^\/api/, '')
-    //     },
-    //   }
+    // proxy: {
+    //   '/n_node': {
+    //     target: 'http://192.168.20.130:8910',
+    //     changeOrigin: true,
+    //     // rewrite: (path) => path.replace(/^\/api/, '')
+    //   },
+    //   '/d_sysop': {
+    //     target: 'http://192.168.20.130:41111',
+    //     changeOrigin: true,
+    //     // rewrite: (path) => path.replace(/^\/api/, '')
+    //   },
+    //   '/ws': {
+    //     target: 'http://192.168.20.130:49101',
+    //     changeOrigin: true,
+    //     // rewrite: (path) => path.replace(/^\/api/, '')
+    //   },
     // }
-    // build: {
-    //   outDir: "",
-    //   assetsDir: "",
   }
+  // build: {
+  //   outDir: "",
+  //   assetsDir: "",
 })
