@@ -73,14 +73,4 @@ const posts = [
 const selectedPost = ref({});
 </script>
 <style>
-@media (mix-width: 576px) {
-  .posts {
-    padding: 1.5rem;
-    margin-right: 0;
-    margin-left: 0;
-    border-width: 1px;
-    border-top-left-radius: 0.25rem;
-    border-top-right-radius: 0.25rem;
-  }
-}
 </style>

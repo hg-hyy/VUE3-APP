@@ -9,47 +9,38 @@
     <div class="divider"></div>
     <ul class="list-unstyled m-4">
       <template v-for="(v, k) in linkdata" :key="k">
-        <slink
-          :id="v.id"
-          :icon="v.icon"
-          :title="v.title"
-          :linkname="v.linkname"
-        />
+        <Vlink :id="v.id" :title="v.title" :linkdata="v.linkdata" />
       </template>
     </ul>
   </div>
 </template>
 <script setup>
 import { ref } from "vue";
-import slink from "../../components/Vlink.vue";
+import Vlink from "../../components/Vlink.vue";
 const headname = ref("系统运维工具");
-const netlist = { network: "网卡配置" };
-const statuslist = { dashboard: "主机监控" };
+const netlist = { network: { name: "网卡配置", icon: "netconf" } };
+const statuslist = { dashboard: { name: "主机监控", icon: "speedometer2" } };
 const showdatalist = {
-  show: "数据",
-  excel: "导出",
-  upload: "导入导出",
-  report: "报表",
-  dyn: "动态组件",
+  excel: { name: "导出", icon: "edit" },
+  upload: { name: "导入导出", icon: "download" },
+  report: { name: "报表", icon: "clipboard" },
+  dyn: { name: "动态组件", icon: "calendar3" },
 };
 const linkdata = [
   {
     id: "network",
-    icon: "netconf",
     title: "网络配置",
-    linkname: netlist,
+    linkdata: netlist,
   },
   {
     id: "status",
-    icon: "speedometer2",
     title: "状态监视",
-    linkname: statuslist,
+    linkdata: statuslist,
   },
   {
     id: "showdata",
-    icon: "speedometer2",
     title: "数据展示",
-    linkname: showdatalist,
+    linkdata: showdatalist,
   },
 ];
 </script>

@@ -11,16 +11,15 @@
     <div class="collapse" :id="id">
       <ul class="btn-toggle-nav list-unstyled fw-normal pb-2 small">
         <li
-          :linkname="linkname"
-          v-for="(value, key) in linkname"
+          v-for="(value, key) in linkdata"
           :key="key"
-          class="align-center mt-2"
+          class="align-center my-2"
         >
-          <router-link :to="'/v1/' + key" class="link-dark rounded my-0 ml-3">
+          <router-link :to="'/v1/' + key" class="link-dark ms-4">
             <svg class="bi me-2" width="24" height="24">
-              <use :xlink:href="'#' + icon" />
+              <use :xlink:href="'#' + value.icon" />
             </svg>
-            <span class="fs-6">{{ value }}</span>
+            <span class="fs-6">{{ value.name }}</span>
           </router-link>
         </li>
       </ul>
@@ -33,8 +32,12 @@ defineProps({
   id: String,
   icon: String,
   title: String,
-  linkname: Object,
+  linkdata: Object,
 });
 </script>
 <style>
+.router-link-active {
+  color: rgba(0, 0, 0, 0.85);
+  background-color: #5f9e8b;
+}
 </style>

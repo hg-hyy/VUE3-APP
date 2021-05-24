@@ -12,9 +12,9 @@ export default defineConfig({
       '/@/': resolve(__dirname, 'src')
     }
   },
-  server: {
-    // host: "127.0.0.1",
-    // port: "3000",
+  server: { //vite 开发服务器配置 生产使用nginx
+    host: "127.0.0.1",
+    port: "3000",
     open: '/signin',
     // proxy: {
     //   '/n_node': {
@@ -33,8 +33,9 @@ export default defineConfig({
     //     // rewrite: (path) => path.replace(/^\/api/, '')
     //   },
     // }
+  },
+  build: {
+    outDir: "C:\\Users\\littl\\Documents\\Web\\nginx-1.19.8\\html",
+    // assetsDir: "C:\\Users\\littl\\Documents\\Web\\static\\assets",  //打包需要的静态资源
   }
-  // build: {
-  //   outDir: "",
-  //   assetsDir: "",
 })

@@ -2,15 +2,14 @@
   <div class="form-signin">
     <form>
       <img
-        class="mb-4"
-        src="../../static/pic/bootstrap-logo.svg"
+        class="img-thumbnail rounded-pill rounded-0"
+        src="../../static/pic/logo.jpg"
         alt=""
-        width="72"
-        height="57"
+        style="width: 128px"
       />
-      <h1 class="h3 mb-3 fw-normal">系统运维工具</h1>
+      <!-- <h1 class="h3 mb-3 fw-normal">系统运维工具</h1> -->
 
-      <div class="form-floating mt-2">
+      <div class="form-floating mt-3">
         <input
           type="text"
           class="form-control"

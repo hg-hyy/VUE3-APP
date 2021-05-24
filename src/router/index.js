@@ -7,7 +7,6 @@ import network from '../views/network/network.vue'
 import regist from '../views/network/regist.vue'
 import home from '../views/home/home.vue'
 import dashboard from '../views/dashboard/dashboard.vue'
-import show from '../views/show/show.vue'
 import excel from '../views/excel/excel.vue'
 import upload from '../views/excel/upload.vue'
 import report from '../views/excel/report.vue'
@@ -60,11 +59,6 @@ const routes = [{
                 path: 'dashboard',
                 name: 'dashboard',
                 component: dashboard
-            },
-            {
-                path: 'show',
-                name: 'show',
-                component: show
             },
             {
                 path: 'excel',

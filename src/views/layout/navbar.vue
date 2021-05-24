@@ -1,6 +1,6 @@
 <template>
   <nav class="navbar navbar-expand-lg bg-dark text-white" style="height: 60px">
-    <div class="container-fluid">
+    <div class="container-fluid ms-5">
       <a class="navbar-brand text-white" href="/"
         ><svg class="bi" width="24" height="24">
           <use xlink:href="#home" /></svg
@@ -54,7 +54,7 @@
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
         <div class="dropdown me-1">
-          <button type="button" class="btn btn-primary position-relative">
+          <button type="button" class="btn btn-primary position-relative me-1">
             Mails
             <span
               class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"

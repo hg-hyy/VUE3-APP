@@ -1,15 +1,22 @@
 <template>
-  <table class="table table-bordered border-info">
-    <thead>
+  <table class="table table-bordered border-info caption-top">
+    <caption>
+      {{
+        captionname
+      }}
+    </caption>
+    <thead class="bg-warning">
       <tr>
-        <th scope="col">序号</th>
-        <th scope="col">姓名</th>
-        <th scope="col">年龄</th>
+        <th v-for="(item, index) in tablehead" :key="index">
+          {{ item }}
+        </th>
       </tr>
     </thead>
     <tbody>
       <tr v-for="(v, k) in tabledata" :key="k">
-        <th scope="row">{{ k + 1 + pagesize * (currentPage - 1) }}</th>
+        <th scope="row">
+          {{ k + 1 + pagesize * (currentPage - 1) }}
+        </th>
         <td v-for="(v1, k1) in v" :key="k1">{{ v1 }}</td>
       </tr>
     </tbody>
@@ -78,27 +85,31 @@
   </nav>
 </template>
 <script setup>
-import { defineProps, ref, computed, toRefs, watch, reactive } from "vue";
+import { defineProps, ref, computed, toRefs, watch } from "vue";
 
 const props = defineProps({
+  tablehead: Array,
+  captionname: String,
   pagenum: Number, //每页条数
   pagesizes: Array, //每页条数选项
   data: Array, //总条数
   layout: String, //布局
 });
-const { data, pagenum, layout } = { ...toRefs(props) };
+const { data, pagenum } = { ...toRefs(props) };
 const currentPage = ref(1);
 const pagesize = ref(3);
 pagesize.value = pagenum.value;
-const tabledata = computed(() =>
-  data.value.slice(
-    (currentPage.value - 1) * pagesize.value,
-    currentPage.value * pagesize.value
-  )
+const tabledata = computed(
+  () =>
+    data &&
+    data.value.slice(
+      (currentPage.value - 1) * pagesize.value,
+      currentPage.value * pagesize.value
+    )
 );
 const pagenums = computed(() => Math.ceil(data.value.length / pagesize.value));
 const maxpagenum = ref(7);
-
+// 自定义页码
 const aa = computed(() => {
   if (pagenums.value > maxpagenum.value) {
     if (
@@ -134,6 +145,7 @@ const aa = computed(() => {
     return pagenums.value;
   }
 });
+
 function pagechange(v) {
   if (v == ">>") {
     currentPage.value += 1;
@@ -143,7 +155,7 @@ function pagechange(v) {
     currentPage.value = v;
   }
 }
-
+// element 页码
 const pagearray = computed(() => {
   const halfPagerCount = (maxpagenum.value - 1) / 2;
   let showPrevMore = false;

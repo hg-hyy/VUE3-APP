@@ -1,49 +1,58 @@
 <template>
-  <Vtitle head="报表" />
-  <div class="row g-1">
-    <div class="col-sm-2">
-      <input
-        class="form-control"
-        aria-label="Upload"
-        style="width: 260px"
-        @change="useImport"
-        type="file"
-        accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
-      />
+  <Vtitle head="导入导出" />
+  <div class="mx-3 shadow-lg p-3 mb-5 bg-body rounded">
+    <div class="row g-5">
+      <div class="col-2">
+        <input
+          class="form-control"
+          aria-label="Upload"
+          style="width: 260px"
+          @change="useImport"
+          type="file"
+          accept=".csv, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel"
+        />
+      </div>
+      <div class="col">
+        <button class="btn btn-danger btn-md" @click="useExport">
+          导出报表
+        </button>
+      </div>
     </div>
-    <div class="col-sm">
-      <button class="btn btn-danger btn-md" @click="useExport">导出报表</button>
-    </div>
-  </div>
 
-  <table
-    ref="tb"
-    class="table table-bordered border-info table-hover caption-top"
-  >
-    <caption>
-      设备信息表
-    </caption>
-    <thead class="table-warning">
-      <tr>
-        <th v-for="(item, index) in th" :key="index">
-          {{ item }}
-        </th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(item, index) in tabledata" :key="index">
-        <td v-for="(v, k) in item" :key="k">
-          {{ v }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
+    <Vpagenation
+      :tablehead="th"
+      :data="tabledata"
+      :pagesizes="pagesizes"
+      :pagenum="pagesize"
+      layout="layout"
+    />
+  </div>
 </template>
 <script setup>
 import { ref } from "vue";
 import XLSX from "xlsx";
 import Vtitle from "../../components/Vtitle.vue";
-let tabledata = ref();
+import Vpagenation from "../../components/Vpagenation.vue";
+const pagesizes = [
+  {
+    text: "3 条/页",
+    value: 3,
+  },
+  {
+    text: "5 条/页",
+    value: 5,
+  },
+  {
+    text: "10 条/页",
+    value: 10,
+  },
+  {
+    text: "13 条/页",
+    value: 13,
+  },
+];
+const pagesize = ref(10);
+let tabledata = ref([]);
 let th = ref([]);
 
 const data = ["SheetJS".split(""), "1234567".split("")];
@@ -93,6 +102,7 @@ function useImport(event) {
         }
       }
       th.value = tablehead;
+      th.value.unshift("ID");
     };
   };
   reader.readAsBinaryString(f);

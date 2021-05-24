@@ -1,29 +1,34 @@
 <template>
-  <table
-    class="table table-bordered border-info text-center table-hover mt-3 caption-top table-responsive"
-  >
-    <caption>
-      设备信息表
-    </caption>
-    <thead>
-      <tr>
-        <th v-for="(v, k) in th" :key="k">{{ v }}</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr v-for="(v, k) in userList" :key="k">
-        <td v-for="(v1, k1) in v" :key="k1">
-          {{ v1 }}
-        </td>
-      </tr>
-    </tbody>
-  </table>
-  <button class="btn btn-info btn-md" @click="getExcel(userList)">
-    导出报表
-  </button>
-  <button class="btn btn-primary btn-md" @click="outExe">导出模板</button>
+  <Vtitle head="excel导出" />
+  <div class="excel mx-3 shadow-lg p-3 mb-5 bg-body rounded">
+    <table
+      class="table table-bordered border-info text-center table-hover mt-3 caption-top table-responsive"
+    >
+      <caption>
+        设备信息表
+      </caption>
+      <thead>
+        <tr>
+          <th v-for="(v, k) in th" :key="k">{{ v }}</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(v, k) in userList" :key="k">
+          <td v-for="(v1, k1) in v" :key="k1">
+            {{ v1 }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <button class="btn btn-info btn-md" @click="getExcel(userList)">
+      导出报表
+    </button>
+    <button class="btn btn-primary btn-md" @click="outExe">导出模板</button>
+  </div>
 </template>
 <script setup>
+import Vtitle from "../../components/Vtitle.vue";
+
 import { export_json_to_excel } from "../../vendor/Export2Excel"; //引入文件
 const th = [
   "客户编号",
@@ -59,7 +64,6 @@ const userList = [
 ];
 
 function outExe() {
-  console.log("qqqqq");
   const tHeader = [
     "客户编号",
     "客户名字",
