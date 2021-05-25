@@ -587,7 +587,7 @@ function initCharts() {
 
 onUnmounted(() => {
   clearInterval(timer.value);
-  ws.close();
+  ws && ws.close();
 });
 </script>
 <style scoped>

@@ -1,6 +1,6 @@
 <template>
   <div id="sidebar">
-    <div class="text-decoration-none p-3 mt-3">
+    <div class="p-3">
       <svg class="bi me-2" width="24" height="24">
         <use xlink:href="#tools" />
       </svg>
@@ -49,11 +49,8 @@ const linkdata = [
   /* width: 280px; */
   height: 100vh;
   height: calc(100vh - 60px);
-  background-color: rgba(0, 0, 0, 0.1);
-  border: solid rgba(0, 0, 0, 0.15);
-  border-width: 1px 0;
-  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
-    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
+  background-image: url("../../static/pic/pat.jpg");
+  background-size: cover;
 }
 .divider {
   height: 0.2rem;

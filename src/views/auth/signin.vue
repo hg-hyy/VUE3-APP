@@ -1,5 +1,5 @@
 <template>
-  <div class="form-signin">
+  <div class="form-signin" id="signin">
     <form>
       <img
         class="img-thumbnail rounded-pill rounded-0"
@@ -137,3 +137,13 @@ onMounted(() => {
 //   router.push("/v1/dashboard");
 // }
 </script>
+<style scoped>
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: auto;
+  text-align: center;
+  margin-top: 254px;
+}
+</style>

@@ -6,8 +6,8 @@
 <script setup>
 </script>
 <style>
-#content {
-  /* width: 1016px; */
-  /* width: calc(100vw - 280px); */
-}
+/* #content {
+  background-image: url("../../static/pic/timothy.jpg");
+  background-size: cover;
+} */
 </style>;

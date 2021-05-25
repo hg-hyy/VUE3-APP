@@ -9,7 +9,7 @@
       {{ title }}
     </button>
     <div class="collapse" :id="id">
-      <ul class="btn-toggle-nav list-unstyled fw-normal pb-2 small">
+      <ul class="btn-toggle-nav list-unstyled fw-normal small">
         <li
           v-for="(value, key) in linkdata"
           :key="key"
@@ -39,5 +39,6 @@ defineProps({
 .router-link-active {
   color: rgba(0, 0, 0, 0.85);
   background-color: #5f9e8b;
+  border-radius: 1em;
 }
 </style>

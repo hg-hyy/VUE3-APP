@@ -1,7 +1,7 @@
 <template>
   <div class="position-fixed p-2 top-0 end-0" ref="toasts">
     <template v-for="(v, k) in t" :key="k">
-      <div v-if="v.active" class="mt-3">
+      <div v-if="v.active" class="mt-3" @mouseenter="mlook">
         <div class="d-flex bg-warning">
           <div class="p-2 flex-fill bd-highlight">
             <img
@@ -59,4 +59,8 @@ onMounted(() => {
   // DOM元素将在初始渲染后分配给ref
   //   console.log(toasts.value); // <div>这是根元素</div>
 });
+
+function mlook() {
+  clearTimeout(id.value);
+}
 </script>

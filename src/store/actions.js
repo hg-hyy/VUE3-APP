@@ -8,7 +8,7 @@ const STATUSURL = '/n_node/v1.0/sensor/seq'
 var ins = axios.create({
     baseURL: 'http://127.0.0.1:8002',
     // baseURL: 'http://192.168.20.130:8910',
-    timeout: 2000,
+    timeout: 10000,
 });
 const actions = {
     set_accountid({
@@ -98,10 +98,24 @@ const actions = {
                     commit('SET_FLOWS', flows)
                 } else {
                     console.log('getDashboards: data must be a non-null array !')
+                    commit("SET_TOAST", {
+                        active: true,
+                        color: "info",
+                        title: "获取主机监视数据：",
+                        time: new Date().toLocaleString(),
+                        msg: `获取失败：data must be a non-null array !`,
+                    });
                 }
             })
             .catch((error) => {
                 console.log(error);
+                commit("SET_TOAST", {
+                    active: true,
+                    color: "danger",
+                    title: "获取主机监视数据：",
+                    time: new Date().toLocaleString(),
+                    msg: error.message,
+                });
             })
     },
 

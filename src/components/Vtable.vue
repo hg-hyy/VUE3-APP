@@ -70,7 +70,7 @@ const setptdata = reactive({
   },
 });
 const ptip = ref({
-  plat_ip: "",
+  plat_ip: "0.0.0.0",
 });
 const alterid = ref();
 useGetRefST({}, PTURL).then((res) => {
@@ -83,7 +83,7 @@ useGetRefST({}, PTURL).then((res) => {
       msg: `获取成功`,
     });
   }
-  ptip.value = res.value.data;
+  ptip.value = res.value.data ? res.value.data : ptip.value;
 });
 
 function setptip() {

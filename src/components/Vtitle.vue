@@ -1,5 +1,5 @@
 <template>
-  <div class="text-decoration-none py-3 m-3">
+  <div class="text-decoration-none py-3 mx-3">
     <span class="fs-5 fw-semibold">{{ head }}</span>
     <div class="divider mt-3"></div>
   </div>
