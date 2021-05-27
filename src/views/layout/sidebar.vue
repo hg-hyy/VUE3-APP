@@ -1,13 +1,13 @@
 <template>
   <div id="sidebar">
-    <div class="p-3">
+    <div class="p-3 ms-5">
       <svg class="bi me-2" width="24" height="24">
         <use xlink:href="#tools" />
       </svg>
       <span class="fs-5 fw-semibold">{{ headname }}</span>
     </div>
     <div class="divider"></div>
-    <ul class="list-unstyled m-4">
+    <ul class="list-unstyled m-4 ps-5">
       <template v-for="(v, k) in linkdata" :key="k">
         <Vlink :id="v.id" :title="v.title" :linkdata="v.linkdata" />
       </template>

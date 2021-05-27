@@ -25,4 +25,6 @@
 import toast from "./components/Vtoast.vue";
 import Vsvg from "./components/Vsvg.vue";
 </script>
+<style>
+</style>
 

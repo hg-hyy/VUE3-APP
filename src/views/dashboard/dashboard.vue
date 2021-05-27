@@ -1,93 +1,94 @@
 <template>
-  <vhead head="主机监视"></vhead>
-  <div class="mx-3 shadow-lg p-3 mb-5 bg-body rounded">
-    <div class="row mt-3">
-      <div class="col-9">
-        <div class="card">
-          <div class="card-header">
-            <span>
-              <svg class="bi me-2" width="24" height="24">
-                <use xlink:href="#cpu" />
-              </svg>
-              硬件监视</span
-            >
-          </div>
-          <div class="card-body p-4" style="height: 320px">
-            <div class="row">
-              <div class="col-6">
-                <div class="text-center">操作系统：{{ hardware.system }}</div>
-              </div>
-              <div class="col-6">
-                <div class="text-center">
-                  开机时间：{{ hardware.setuptime }}
-                </div>
-              </div>
-
-              <div class="col-3">
-                <div
-                  id="cpuTemp"
-                  ref="cpuTemp"
-                  style="width: 260px; height: 170px"
-                ></div>
-              </div>
-              <div class="col-3">
-                <div
-                  id="cpuUsage"
-                  ref="cpuUsage"
-                  style="width: 260px; height: 170px"
-                ></div>
-              </div>
-              <div class="col-3">
-                <div
-                  id="memUsage"
-                  ref="memUsage"
-                  style="width: 260px; height: 170px"
-                ></div>
-              </div>
-              <div class="col-3">
-                <div
-                  id="diskUsage"
-                  ref="diskUsage"
-                  style="width: 260px; height: 170px"
-                ></div>
-              </div>
-
-              <div
-                class="col-3 mt-3"
-                v-for="(item, index) in stat"
-                :key="index"
+  <div id="tet">
+    <Vtitle head="主机监视" />
+    <div class="mx-3 shadow-lg p-3 mb-5 bg-body rounded" id="dash">
+      <div class="row mt-3">
+        <div class="col-9">
+          <div class="card">
+            <div class="card-header">
+              <span>
+                <svg class="bi me-2" width="24" height="24">
+                  <use xlink:href="#cpu" />
+                </svg>
+                硬件监视</span
               >
-                <div class="stat-info__item">
-                  <div
-                    class="stat-info__icon"
-                    :style="{ 'background-color': item.bgColor }"
-                  >
-                    <i :class="item.icon"></i>
+            </div>
+            <div class="card-body p-4" style="height: 320px">
+              <div class="row">
+                <div class="col-6">
+                  <div class="text-center">操作系统：{{ hardware.system }}</div>
+                </div>
+                <div class="col-6">
+                  <div class="text-center">
+                    开机时间：{{ hardware.setuptime }}
                   </div>
-                  <div class="stat-info__detail">
-                    <span class="stat-info__total">{{ item.total }}</span>
-                    <span class="stat-info__title">{{ item.title }}</span>
+                </div>
+
+                <div class="col-3">
+                  <div
+                    id="cpuTemp"
+                    ref="cpuTemp"
+                    style="width: 260px; height: 170px"
+                  ></div>
+                </div>
+                <div class="col-3">
+                  <div
+                    id="cpuUsage"
+                    ref="cpuUsage"
+                    style="width: 260px; height: 170px"
+                  ></div>
+                </div>
+                <div class="col-3">
+                  <div
+                    id="memUsage"
+                    ref="memUsage"
+                    style="width: 260px; height: 170px"
+                  ></div>
+                </div>
+                <div class="col-3">
+                  <div
+                    id="diskUsage"
+                    ref="diskUsage"
+                    style="width: 260px; height: 170px"
+                  ></div>
+                </div>
+
+                <div
+                  class="col-3 mt-3"
+                  v-for="(item, index) in stat"
+                  :key="index"
+                >
+                  <div class="stat-info__item">
+                    <div
+                      class="stat-info__icon"
+                      :style="{ 'background-color': item.bgColor }"
+                    >
+                      <i :class="'fas ' + item.icon"></i>
+                    </div>
+                    <div class="stat-info__detail">
+                      <span class="stat-info__total">{{ item.total }}</span>
+                      <span class="stat-info__title">{{ item.title }}</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="col-3">
-        <div class="card">
-          <div class="card-header">
-            <span>
-              <svg class="bi me-2" width="24" height="24">
-                <use xlink:href="#bell" /></svg
-              >报警事件（Top5）</span
-            >
-          </div>
-          <div class="card-body" style="height: 320px">
-            <div class="row">
-              <div class="col-12">
-                <!-- <div class="btn-group mb-3" role="group">
+        <div class="col-3">
+          <div class="card">
+            <div class="card-header">
+              <span>
+                <svg class="bi me-2" width="24" height="24">
+                  <use xlink:href="#bell" /></svg
+                >报警事件（Top5）</span
+              >
+            </div>
+            <div class="card-body" style="height: 320px">
+              <div class="row">
+                <div class="col-12">
+                  <!-- <div class="btn-group mb-3" role="group">
                 <button
                   type="button"
                   class="btn btn-info"
@@ -102,7 +103,7 @@
                   清空
                 </button>
               </div> -->
-                <!-- 
+                  <!-- 
               <div class="input-group mb-3">
                 <input
                   id="wssend"
@@ -124,13 +125,14 @@
                 </button>
               </div> -->
 
-                <textarea
-                  title="wsmsg"
-                  class="form-control"
-                  rows="11"
-                  v-model="msg"
-                >
-                </textarea>
+                  <textarea
+                    title="wsmsg"
+                    class="form-control"
+                    rows="11"
+                    v-model="msg"
+                  >
+                  </textarea>
+                </div>
               </div>
             </div>
           </div>
@@ -141,11 +143,11 @@
 </template>
 
 <script setup>
-import { ref, reactive, onMounted, watch, onUnmounted } from "vue";
+import { ref, reactive, onMounted, onUnmounted } from "vue";
 import { useStore } from "vuex";
 import axios from "axios";
 import * as echarts from "echarts";
-import vhead from "../../components/Vtitle.vue";
+import Vtitle from "../../components/Vtitle.vue";
 
 const store = useStore();
 const th = ["ID", "名称", "PID", "CPU(%)", "内存(%)", "启动时间", "操作"];
@@ -326,8 +328,6 @@ function gaugeimg(id, title, min, max, val, unit) {
       },
     ],
   };
-  option.series[0].min = min;
-  option.series[0].max = max;
   option.series[0].data[0].value = val;
   option.series[0].data[0].name = title;
   option.series[0].axisLine.lineStyle.color[0][0] = (val - min) / (max - min);
@@ -520,28 +520,28 @@ function loadData() {
   stat.length = 0;
   stat.push(
     {
-      icon: "el-icon-upload2",
+      icon: "fa-upload",
       title: "上行流量",
       total: store.getters.flows.total_flow_out_s + "Kbps",
       bgColor: "#ebcc6f",
     },
     {
-      icon: "el-icon-download",
+      icon: "fa-download",
       title: "下行流量",
       total: store.getters.flows.total_flow_in_x + "Kbps",
       bgColor: "#3acaa9",
     },
     {
-      icon: "el-icon-s-unfold",
+      icon: "fa-paper-plane",
       title: "发送总流量",
       total: store.getters.flows.total_bytes_sent,
       bgColor: "#67c4ed",
     },
     {
-      icon: "el-icon-s-fold",
+      icon: "fa-ethernet",
       title: "接收总流量",
       total: store.getters.flows.total_bytes_recv,
-      bgColor: "#67c4ed",
+      bgColor: "#17c4fd",
     }
   );
   gaugeimg(
@@ -591,19 +591,12 @@ onUnmounted(() => {
 });
 </script>
 <style scoped>
-.b-example-divider {
-  height: 0.2rem;
-  width: 100%;
-  background-color: rgba(116, 30, 214, 0.432);
-  border: solid rgba(207, 14, 143, 0.15);
-  border-width: 1px 0;
-  box-shadow: inset 0 0.5em 1.5em rgba(0, 0, 0, 0.1),
-    inset 0 0.125em 0.5em rgba(0, 0, 0, 0.15);
-}
 .stat-info__item {
   display: flex;
   height: 50px;
   box-shadow: 2px 2px 5px #ccc;
+  border: 1rem;
+  border-radius: 1.5rem;
 }
 .stat-info__icon {
   display: flex;
@@ -611,6 +604,8 @@ onUnmounted(() => {
   align-items: center;
   width: 58px;
   color: white;
+  border: 1rem;
+  border-radius: 1.5rem;
 }
 .stat-info__detail {
   flex: 1;
@@ -628,5 +623,28 @@ onUnmounted(() => {
   color: #666;
   font-size: 12px;
   padding-top: 8px;
+}
+#dash {
+  overflow-y: auto;
+  height: 800px;
+}
+a:hover {
+  background: linear-gradient(to left, #4650dd, #1d26a0) !important;
+  color: #dee2e6;
+}
+.fa-upload {
+  color: salmon;
+}
+
+.fa-download {
+  color: green;
+}
+
+.fa-paper-plane {
+  opacity: 1;
+}
+
+.fa-ethernet {
+  color: rgb(59, 91, 152);
 }
 </style>

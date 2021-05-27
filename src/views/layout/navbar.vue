@@ -1,49 +1,68 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-dark text-white" style="height: 60px">
+  <nav class="navbar navbar-expand-lg bg-dark" style="height: 60px">
     <div class="container-fluid ms-5">
-      <a class="navbar-brand text-white" href="/"
-        ><svg class="bi" width="24" height="24">
+      <a class="navbar-brand text-white" href="/">
+        <svg class="bi" width="24" height="24">
           <use xlink:href="#home" /></svg
-        >Home</a
-      >
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#navlink"
-        aria-controls="navlink"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navlink">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        >Home
+      </a>
+      <div class="collapse navbar-collapse">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 bg-dark">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link text-white" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link text-white" href="#">Link</a>
           </li>
           <li class="nav-item dropdown">
             <a
-              class="nav-link dropdown-toggle"
+              class="nav-link dropdown-toggle text-white"
               href="#"
-              id="navbarDropdown"
               role="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"
+              data-bs-offset="20,20"
             >
-              Dropdown
+              报警管理
             </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider" /></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <ul class="dropdown-menu dropdown-menu-dark">
+              <li>
+                <router-link
+                  to="/v1/warnManage/currentwarn"
+                  class="link-dark dropdown-item"
+                >
+                  <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#bell" />
+                  </svg>
+                  <span class="fs-6">当前报警</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link
+                  to="/v1/warnManage/unHandlewarn"
+                  class="link-dark dropdown-item"
+                >
+                  <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#bell" />
+                  </svg>
+                  <span class="fs-6">未处理报警</span>
+                </router-link>
+              </li>
+              <li>
+                <router-link
+                  to="/v1/warnManage/handledwarn"
+                  class="link-dark dropdown-item"
+                >
+                  <svg class="bi me-2" width="16" height="16">
+                    <use xlink:href="#bell" />
+                  </svg>
+                  <span class="fs-6">已处理报警</span>
+                </router-link>
+              </li>
             </ul>
           </li>
         </ul>
+
         <form class="d-flex mx-1">
           <input
             class="form-control me-2"
@@ -53,14 +72,19 @@
           />
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+
         <div class="dropdown me-1">
-          <button type="button" class="btn btn-primary position-relative me-1">
+          <button
+            type="button"
+            class="btn btn-outline-primary position-relative me-1"
+          >
             Mails
             <span
-              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-secondary"
-              >+99 <span class="visually-hidden">unread messages</span></span
+              class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-info"
+              >+66 <span class="visually-hidden">unread messages</span></span
             >
           </button>
+
           <button
             class="btn btn-outline-primary dropdown-toggle"
             type="button"

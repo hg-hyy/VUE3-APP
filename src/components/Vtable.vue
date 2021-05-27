@@ -46,11 +46,13 @@
   ></Vmodal>
 </template>
 <script setup>
-import { defineProps, toRefs, reactive, ref } from "vue";
+import { defineProps, toRefs, reactive, ref, defineAsyncComponent } from "vue";
 import { useStore } from "vuex";
 import { useGetRefST, usePostRefST } from "../utils/index";
 import Vbutton from "./Vbutton.vue";
-import Vmodal from "./Vmodal.vue";
+// import Vmodal from "./Vmodal.vue";
+// 异步组件
+const Vmodal = defineAsyncComponent(() => import("./Vmodal.vue"));
 const PostURL = "/d_sysop/v1.0/netConf";
 const PTURL = "/d_sysop/v1.0/plat_host";
 
