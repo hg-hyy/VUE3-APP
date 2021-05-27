@@ -49,7 +49,6 @@ import { defineProps, reactive, computed, watch, onMounted, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import { usePostRef } from "../../utils/index";
-import { login } from "../../api/api";
 defineProps({
   data: {
     username: String,
