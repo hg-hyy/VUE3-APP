@@ -19,7 +19,7 @@ import { ref } from "vue";
 import Vlink from "../../components/Vlink.vue";
 const headname = ref("系统运维工具");
 const netlist = { network: { name: "网卡配置", icon: "netconf" } };
-const statuslist = { dashboard: { name: "主机监控", icon: "speedometer2" } };
+const statuslist = { dash: { name: "主机监控", icon: "speedometer2" } };
 const showdatalist = {
   excel: { name: "导出", icon: "edit" },
   upload: { name: "导入导出", icon: "download" },

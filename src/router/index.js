@@ -38,7 +38,14 @@ const routes = [
       content,
     },
     meta: {
-      isAuthenticated: true,
+      requiresAuth: true,
+    },
+    beforeEnter: (to, from) => {
+      // reject the navigation
+      console.log(to.fullPath);
+      if (to.meta.requiresAuth) {
+        return true;
+      }
     },
     children: [
       {
@@ -57,8 +64,8 @@ const routes = [
         component: home,
       },
       {
-        path: "dashboard",
-        name: "dashboard",
+        path: "dash",
+        name: "dash",
         component: dashboard,
       },
       {
@@ -112,6 +119,7 @@ const routes = [
   },
   {
     path: "/dashboard",
+    name: "dashboard",
     components: {
       dashboard,
     },
@@ -136,6 +144,7 @@ const authdata = store.getters.authdata;
 // 导航守卫 登陆验证
 router.beforeEach((to, from, next) => {
   if (
+    to.meta.requiresAuth &&
     to.name !== "signin" &&
     !authdata.isAuthenticated &&
     !localStorage.getItem("username")
@@ -145,5 +154,23 @@ router.beforeEach((to, from, next) => {
     });
   else next();
 });
-
+router.beforeResolve(async (to) => {
+  if (to.meta.requiresAuth) {
+    try {
+      localStorage.getItem("username");
+    } catch (error) {
+      if (error) {
+        // ... 处理错误，然后取消导航
+        console.log("there is no token");
+        return false;
+      } else {
+        // 意料之外的错误，取消导航并把错误传给全局处理器
+        throw error;
+      }
+    }
+  }
+});
+router.afterEach((to, from) => {
+  console.log(to.fullPath, from.fullPath);
+});
 export default router;

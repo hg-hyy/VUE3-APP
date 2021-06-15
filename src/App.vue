@@ -17,12 +17,12 @@
     </div>
   </div>
   <!-- 通知 -->
-  <toast />
+  <Vtoast />
   <!-- svg图标 -->
   <Vsvg />
 </template>
 <script setup>
-import toast from "./components/Vtoast.vue";
+import Vtoast from "./components/Vtoast.vue";
 import Vsvg from "./components/Vsvg.vue";
 </script>
 <style>
